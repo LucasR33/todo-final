@@ -1,25 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
 import './App.css';
+import TodosApp from './components/TodosApp'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const store = createStore(rootReducer);
+export default class App extends React.PureComponent {
+
+  render() {
+    return (
+      <Provider store={store}>
+        <TodosApp />
+      </Provider>
+    );
+  }
 }
-
-export default App;
